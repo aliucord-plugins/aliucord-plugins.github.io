@@ -8,7 +8,7 @@ nav_order: 1
 # Aliucord plugin list
 ----
 
-Make sure move the installed files to /Aluicord/plugins/
+Make sure move the installed files to /Aliucord/plugins/
 
 You can open a issue if you want a plugin to be added!
 
