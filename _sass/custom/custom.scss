@@ -1,15 +1,108 @@
-body {
-    padding-right: 23rem;
+
+$content-width: 1000px;
+$sidebar-width: 264px;
+$page-width: $content-width + $sidebar-width;
+
+// ----
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+
+//signals dark-mode to browser
+//noinspection CssUnknownProperty
+:root {
+  color-scheme: dark;
 }
 
-.side-bar {
-    width: calc((100% - 80rem) / 2 + 1rem);
+.site-header, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quicksand', sans-serif
 }
 
-.lh-tight {
-    padding: 0px;
-} 
+#search-input {
+  color: $body-text-color;
+}
 
 a {
-    background-image: unset !important;
+  background-image: unset !important; // remove link-underline
+}
+
+.highlight {
+  line-height: 0.75em;
+
+  .na, .nl, .nx {
+    color: $grey-lt-300;
+  }
+  .c1 {
+    color: $grey-dk-000;
+  }
+  .dl {
+    color: #2aa198;
+  }
+}
+
+blockquote {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+
+  margin: 0.5em;
+
+  border: solid 0.2em transparent;
+  border-left-color: $grey-dk-000;
+
+  padding: 0 1.5em 0 1.5em;
+  line-height: 1.25em;
+
+  background-color: mix($grey-dk-000, $body-background-color, 10%);
+  color: $grey-dk-000;
+
+  &.info {
+    background-color: mix($blue-000, $body-background-color, 10%);
+    border-left-color: $blue-000;
+    border-radius: 4px;
+
+    &.important {
+      border-left-color: $red-000;
+      background-color: mix($red-000, $body-background-color, 10%);
+    }
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+td, th {
+  border: none;
+}
+
+th {
+  background-color: $grey-dk-200;
+}
+
+.search-result-doc .search-result-doc-title {
+  overflow: unset;
+}
+
+@media (min-width: 50rem) {
+  .main {
+    max-width: $content-width;
+    margin-left: $sidebar-width;
+  }
+
+  .side-bar {
+    min-width: $sidebar-width;
+    width: $sidebar-width;
+  }
+}
+
+@media (min-width: $page-width) {
+  .side-bar {
+    width: calc( (100% - #{$page-width}) / 2 + #{$sidebar-width} );
+    min-width: $sidebar-width;
+  }
+
+  .main {
+    margin-left: calc( (100% - #{$page-width}) / 2 + #{$sidebar-width} );
+  }
 }
