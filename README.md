@@ -1,4 +1,4 @@
-# What's this?
+# What is this page?
 Hello! This webpage is a unoffical library for Aliucord plugins, I made this page to find and install plugins faster :3 
 
 I only made this page and not the Aliucord or plugins for Aliucord. 
