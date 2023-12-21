@@ -138,7 +138,6 @@ class AddonBrowser extends HTMLElement {
                 return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
             });
 
-            
             let resultElement = this.shadowRoot.getElementById("search-results");
             this.addons.forEach((addon, id) => {
                 let element = document.createElement("div");
@@ -159,14 +158,6 @@ class AddonBrowser extends HTMLElement {
                 </div>
                 <div class="links"></div>
                 `;
-
-                let platformsElement = element.getElementsByClassName("platforms").item(0);
-                addon.platforms.forEach((platform) => {
-                    let element = document.createElement("img");
-                    element.src = `/assets/addon_browser/platforms/${platform}.webp`;
-                    element.alt = platform;
-                    platformsElement.append(element);
-                });
 
                 let linksElement = element.getElementsByClassName("links").item(0);
                 for (id in addon.links) {
