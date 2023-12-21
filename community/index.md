@@ -1,12 +1,15 @@
 ---
 layout: page
-title: Community Guides
-has_children: true
-nav_order: 2
+title: Plugin list
+has_children: false
+nav_order: 1
 ---
 
-# Community Guides and Tutorials
-This section is a collection of Guides and Tutorials from BlueMap's awesome Community!
+# Aliucord Plugin list
 
-It focuses on more specific and complex topics that don't really fit into the main wiki-pages
-but are still very worth sharing.
+> **Important:**<br>
+> Make sure moving the installed files to /Aluicord/plugins/
+
+----
+
+<addon-browser></addon-browser>
