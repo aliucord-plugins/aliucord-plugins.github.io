@@ -5,18 +5,6 @@ class AddonBrowser extends HTMLElement {
         this.shadowRoot.innerHTML = `
         <div class="menu">
             <input id="search" type="text" placeholder="Search...">
-            <div class="select">
-                <label for="api-version">API-Version</label>
-                <select id="api-version" name="api-version">
-                    <option value="any">any</option>
-                </select>
-            </div>
-            <div class="select">
-                <label for="platform">Platform</label>
-                <select id="platform" name="platform">
-                    <option value="any">any</option>
-                </select>
-            </div>
         </div>
         <div id="search-results" class="results"></div>
         `;
@@ -150,42 +138,7 @@ class AddonBrowser extends HTMLElement {
                 return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
             });
 
-            this.apiVersions = [];
-            this.platforms = [];
-            this.addons.forEach((addon) => {
-                if (addon.apiVersion) {
-                    const subversions = addon.apiVersion.split(".");
-                    for (let i = 0; i < subversions.length; i++) {
-                        const version = subversions.slice(0, i + 1).join(".");
-                        if (!this.apiVersions.includes(version)) this.apiVersions.push(version);
-                    }
-                }
-
-                addon.platforms.forEach((platform) => {
-                    if (!this.platforms.includes(platform)) this.platforms.push(platform);
-                });
-            });
-            this.apiVersions.sort(this.compareVersions);
-
-            let apiVersionSelectElement = this.shadowRoot.getElementById("api-version");
-            this.apiVersions.forEach((version) => {
-                let option = document.createElement("option");
-                option.value = version;
-                option.innerHTML = version;
-                apiVersionSelectElement.append(option);
-            });
-            this.shadowRoot.getElementById("api-version").value = Math.max(
-                ...this.apiVersions.map((v) => v.split(".")[0])
-            );
-
-            let apiPlatformSelectElement = this.shadowRoot.getElementById("platform");
-            this.platforms.forEach((platform) => {
-                let option = document.createElement("option");
-                option.value = platform;
-                option.innerHTML = platform;
-                apiPlatformSelectElement.append(option);
-            });
-
+            
             let resultElement = this.shadowRoot.getElementById("search-results");
             this.addons.forEach((addon, id) => {
                 let element = document.createElement("div");
@@ -196,7 +149,6 @@ class AddonBrowser extends HTMLElement {
                 <div class="desc">
                     <div class="title">
                         <div class="name">${addon.name}</div>
-                        <div class="platforms"></div>
                         <div class="author">by ${addon.author}</div>
                     </div>
                     <div class="description">${addon.description
@@ -237,8 +189,6 @@ class AddonBrowser extends HTMLElement {
 
     update() {
         let search = this.shadowRoot.getElementById("search").value;
-        let platform = this.shadowRoot.getElementById("platform").value;
-        let apiVersion = this.shadowRoot.getElementById("api-version").value.split(".");
 
         this.addons.forEach((addon, id) => {
             let element = this.shadowRoot.getElementById("addon-" + id);
@@ -250,27 +200,6 @@ class AddonBrowser extends HTMLElement {
                     (!addon.description || !addon.description.toLowerCase().includes(search.toLowerCase()))
                 )
                     match = false;
-            }
-
-            if (apiVersion[0] !== "any" && addon.apiVersion) {
-                let addonVersion = addon.apiVersion.split(".");
-                if (Number.parseInt(apiVersion[0]) !== Number.parseInt(addonVersion[0])) {
-                    match = false;
-                } else {
-                    for (let i = 1; i < Math.min(apiVersion.length, addonVersion.length); i++) {
-                        let a = Number.parseInt(apiVersion[i]);
-                        let b = Number.parseInt(addonVersion[i]);
-
-                        if (a < b) {
-                            match = false;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (addon.platforms && platform && platform !== "any") {
-                if (!addon.platforms.includes(platform)) match = false;
             }
 
             if (match) {
