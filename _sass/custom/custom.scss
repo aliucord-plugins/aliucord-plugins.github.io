@@ -10,6 +10,6 @@ body {
     padding: 0px;
 } 
 
-.nav-list .nav-list-item .nav-list-link:hover, .nav-list .nav-list-item .nav-list-link.active {
-    background-color: none;
+a {
+    background-image: unset !important;
 }
