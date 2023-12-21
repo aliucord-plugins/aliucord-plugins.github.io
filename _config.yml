@@ -5,4 +5,5 @@ color_scheme: dark
 
 url: https://aliucord-plugins.github.io/
 
-
+aux_links:
+  "Github source": "https://github.com/aliucord-plugins/aliucord-plugins.github.io"

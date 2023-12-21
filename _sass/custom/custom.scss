@@ -1,11 +1,15 @@
 body {
-    padding-right: 12rem;
+    padding-right: 23rem;
 }
 
 .side-bar {
-    width: calc((100% - 66.5rem) / 2 + 5rem);
+    width: calc((100% - 80rem) / 2 + 1rem);
 }
 
 .lh-tight {
     padding: 0px;
 } 
+
+.nav-list .nav-list-item .nav-list-link:hover, .nav-list .nav-list-item .nav-list-link.active {
+    background-color: none;
+}
