@@ -134,7 +134,7 @@ class AddonBrowser extends HTMLElement {
             element.addEventListener("input", () => this.update());
         });
 
-        this.fetchHocon(`/assets/addon_browser/addons.conf`).then((addons) => {
+        this.fetchHocon(`/assets/plugin_browser/addons.conf`).then((addons) => {
             this.addons = addons;
             this.addons.sort((a, b) => {
                 return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
@@ -168,7 +168,7 @@ class AddonBrowser extends HTMLElement {
                     element.href = link;
                     element.target = "_blank";
                     element.innerHTML = `
-                    <img alt="${id}" src="/assets/addon_browser/icons/${id}.svg">
+                    <img alt="${id}" src="/assets/plugin_browser/icons/${id}.svg">
                     `;
                     linksElement.append(element);
                 }
