@@ -1,4 +1,4 @@
-class AddonBrowser extends HTMLElement {
+class PluginBrowser extends HTMLElement {
     // noinspection JSUnusedGlobalSymbols
     connectedCallback() {
         this.attachShadow({ mode: "open" });
@@ -68,7 +68,7 @@ class AddonBrowser extends HTMLElement {
             margin: 0.5em 0;
         }
         
-        .addon {
+        .plugin {
             display: flex;
             background-color: #222;
             margin: 0.5em 0;    
@@ -76,42 +76,42 @@ class AddonBrowser extends HTMLElement {
             border-radius: 4px;
         }
         
-        .addon .title {
+        .plugin .title {
             display: flex;
         }
         
-        .addon .desc {
+        .plugin .desc {
             flex-grow: 1;
             margin-right: 0.5em;
         }
         
-        .addon .links {
+        .plugin .links {
             flex-grow: 0;
         }
         
-        .addon .platforms img {
+        .plugin .platforms img {
             display: inline-block;
             width: 1em;
             height: 1em;   
             margin-left: 0.5em;
         }
         
-        .addon .name {
+        .plugin .name {
             font-weight: bold;
         }
         
-        .addon .author {
+        .plugin .author {
             margin-left: 0.5em;
             font-style: italic;
             color: #666;
         }
         
-        .addon .links {
+        .plugin .links {
             flex-grow: 0;
             flex-shrink: 0;
         }
         
-        .addon .links a {
+        .plugin .links a {
             text-decoration: none;
             width: 3em;
             height: 3em;
@@ -120,7 +120,7 @@ class AddonBrowser extends HTMLElement {
             display: inline-block;
         }
         
-        .addon .links img {
+        .plugin .links img {
             width: 100%;
             height: 100%;
             display: inline-block;
@@ -134,25 +134,25 @@ class AddonBrowser extends HTMLElement {
             element.addEventListener("input", () => this.update());
         });
 
-        this.fetchHocon(`/assets/plugin_browser/addons.conf`).then((addons) => {
-            this.addons = addons;
-            this.addons.sort((a, b) => {
+        this.fetchHocon(`/assets/plugin_browser/plugins.conf`).then((plugins) => {
+            this.plugins = plugins;
+            this.plugins.sort((a, b) => {
                 return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
             });
 
             let resultElement = this.shadowRoot.getElementById("search-results");
-            this.addons.forEach((addon, id) => {
+            this.plugins.forEach((plugin, id) => {
                 let element = document.createElement("div");
-                element.id = "addon-" + id;
-                element.classList.add("addon");
-                element.addon = addon;
+                element.id = "plugin-" + id;
+                element.classList.add("plugin");
+                element.plugin = plugin;
                 element.innerHTML = `
                 <div class="desc">
                     <div class="title">
-                        <div class="name">${addon.name}</div>
-                        <div class="author">by ${addon.author}</div>
+                        <div class="name">${plugin.name}</div>
+                        <div class="author">by ${plugin.author}</div>
                     </div>
-                    <div class="description">${addon.description
+                    <div class="description">${plugin.description
                         .trim()
                         .replaceAll("<", "&lt;")
                         .replaceAll(">", "&gt;")
@@ -162,8 +162,8 @@ class AddonBrowser extends HTMLElement {
                 `;
                     
                 let linksElement = element.getElementsByClassName("links").item(0);
-                for (id in addon.links) {
-                    let link = addon.links[id];
+                for (id in plugin.links) {
+                    let link = plugin.links[id];
                     let element = document.createElement("a");
                     element.href = link;
                     element.target = "_blank";
@@ -183,14 +183,14 @@ class AddonBrowser extends HTMLElement {
     update() {
         let search = this.shadowRoot.getElementById("search").value;
 
-        this.addons.forEach((addon, id) => {
-            let element = this.shadowRoot.getElementById("addon-" + id);
+        this.plugins.forEach((plugin, id) => {
+            let element = this.shadowRoot.getElementById("plugin-" + id);
 
             let match = true;
             if (search) {
                 if (
-                    (!addon.name || !addon.name.toLowerCase().includes(search.toLowerCase())) &&
-                    (!addon.description || !addon.description.toLowerCase().includes(search.toLowerCase()))
+                    (!plugin.name || !plugin.name.toLowerCase().includes(search.toLowerCase())) &&
+                    (!plugin.description || !plugin.description.toLowerCase().includes(search.toLowerCase()))
                 )
                     match = false;
             }
@@ -227,4 +227,4 @@ class AddonBrowser extends HTMLElement {
     }
 }
 
-customElements.define("addon-browser", AddonBrowser);
+customElements.define("plugin-browser", PluginBrowser);
