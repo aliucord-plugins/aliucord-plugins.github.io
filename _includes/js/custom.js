@@ -6,6 +6,7 @@ class AddonBrowser extends HTMLElement {
         <div class="menu">
             <input id="search" type="text" placeholder="Search...">
         </div>
+
         <div id="search-results" class="results"></div>
         `;
 
@@ -36,6 +37,7 @@ class AddonBrowser extends HTMLElement {
             display: flex;
             background-color: #333;
             border-radius: 4px;
+            margin-bottom: 1em;
         }
         
         input {
@@ -158,7 +160,7 @@ class AddonBrowser extends HTMLElement {
                 </div>
                 <div class="links"></div>
                 `;
-
+                    
                 let linksElement = element.getElementsByClassName("links").item(0);
                 for (id in addon.links) {
                     let link = addon.links[id];
