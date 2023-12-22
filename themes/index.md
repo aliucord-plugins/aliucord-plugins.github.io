@@ -12,62 +12,6 @@ If you want a theme to be added please create a issue on the Github page.
 **Make sure to install Themer plugin!**
 
  <style>
-    *, *::before, *::after {
-        box-sizing: border-box;
-    }
-    
-    input, select, option {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        font-family: inherit;
-        font-size: inherit;
-        cursor: inherit;
-        line-height: 1em;
-        outline: none;
-    }
-    
-    option {
-        background-color: #333;
-    }
-    
-    .menu {
-        display: flex;
-        background-color: #333;
-        border-radius: 4px;
-        margin-bottom: 1em;
-    }
-    
-    input {
-        padding: 1em;
-        min-width: 10em;
-    }
-    
-    ::placeholder, label {
-        color: #888; 
-    }
-    
-    .select {
-        position: relative;
-        width: 10em;
-        margin: 0 0.5em;
-    }
-    
-    .select label {
-        position: absolute;
-        top: 0.25em;
-        left: 0;
-        font-size: 0.7em;
-        
-    }
-    
-    .select select {
-        padding: 0.5em 0;
-        margin: 0.5em 0;
-    }
-    
     .theme {
         display: flex;
         background-color: #222;
@@ -87,13 +31,6 @@ If you want a theme to be added please create a issue on the Github page.
     
     .theme .links {
         flex-grow: 0;
-    }
-    
-    .theme .platforms img {
-        display: inline-block;
-        width: 1em;
-        height: 1em;   
-        margin-left: 0.5em;
     }
     
     .theme .name {
@@ -131,7 +68,7 @@ If you want a theme to be added please create a issue on the Github page.
                 <div class="desc">
                     <div class="title">
                         <div class="name">Themer</div>
-                        <div class="author">Aliucord</div>
+                        <div class="author">by Aliucord</div>
                     </div>
                     <div class="description">Xposed module that allows you to change colors in Discord. Requires enabled Resource Hooks in EdXposed / LSPosed Manager settings.</div>
                 </div>
