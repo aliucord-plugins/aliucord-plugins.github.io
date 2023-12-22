@@ -9,7 +9,5 @@ nav_order: 2
 ----
 
 If you want a plugin to be added please create a issue on the Github page.
-
-
-
+ 
 <addon-browser></addon-browser>
