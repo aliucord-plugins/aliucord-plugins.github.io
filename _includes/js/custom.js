@@ -168,7 +168,7 @@ class AddonBrowser extends HTMLElement {
                     element.href = link;
                     element.target = "_blank";
                     element.innerHTML = `
-                    <img alt="${id}" src="/assets/addon_browser/links/${id}.svg">
+                    <img alt="${id}" src="/assets/addon_browser/icons/${id}.svg">
                     `;
                     linksElement.append(element);
                 }
